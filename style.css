@@ -1,0 +1,167 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', Arial, sans-serif;
+}
+
+/* ================= BODY ================= */
+body {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #eaeaea;
+  min-height: 100vh;
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+/* ================= CONTAINER ================= */
+.container {
+  max-width: 900px;
+  margin: 50px auto;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  padding: 35px;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  animation: slideUp 1.2s ease;
+}
+
+/* ================= PROFILE PIC ================= */
+.profile-pic {
+  display: block;
+  margin: 0 auto 20px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #00f2ff;
+  box-shadow: 0 0 25px #00f2ff;
+  animation: pulseGlow 2.5s infinite;
+}
+
+/* ================= HEADINGS ================= */
+h1 {
+  text-align: center;
+  font-size: 2.8rem;
+  background: linear-gradient(90deg, #00f2ff, #00ff85);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glowText 3s infinite alternate;
+}
+
+h3 {
+  text-align: center;
+  margin-top: 5px;
+  color: #00f2ff;
+  letter-spacing: 1px;
+}
+
+.college {
+  text-align: center;
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 25px;
+}
+
+/* ================= DIVIDER ================= */
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #00f2ff, transparent);
+  margin: 25px 0;
+}
+
+/* ================= SECTIONS ================= */
+section {
+  margin-bottom: 25px;
+  padding: 15px;
+  border-radius: 12px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+section:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 0 25px rgba(0, 242, 255, 0.3);
+}
+
+section h2 {
+  font-size: 1.4rem;
+  color: #00ffcc;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+section h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 50px;
+  height: 3px;
+  background: #00f2ff;
+  animation: underlineMove 2s infinite alternate;
+}
+
+/* ================= LISTS ================= */
+ul {
+  margin-left: 20px;
+}
+
+ul li {
+  margin-bottom: 8px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+ul li:hover {
+  transform: translateX(8px);
+  color: #00f2ff;
+}
+
+/* ================= CONTACT ================= */
+section ul li {
+  word-break: break-word;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 15px #00f2ff; }
+  50% { box-shadow: 0 0 35px #00f2ff; }
+  100% { box-shadow: 0 0 15px #00f2ff; }
+}
+
+@keyframes glowText {
+  from { text-shadow: 0 0 10px #00f2ff; }
+  to { text-shadow: 0 0 25px #00ff85; }
+}
+
+@keyframes underlineMove {
+  from { width: 40px; }
+  to { width: 90px; }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  .container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .profile-pic {
+    width: 130px;
+    height: 130px;
+  }
+}
