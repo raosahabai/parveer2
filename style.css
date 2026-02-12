@@ -97,3 +97,28 @@ ul li {
     height: 130px;
   }
 }
+/* Certificate corner box */
+.certificate-box {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background: rgba(0, 242, 255, 0.15);
+  border: 1px solid #00f2ff;
+  padding: 12px 15px;
+  border-radius: 10px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.certificate-box a {
+  display: inline-block;
+  margin-top: 6px;
+  color: #00f2ff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.certificate-box a:hover {
+  text-decoration: underline;
+}
+
