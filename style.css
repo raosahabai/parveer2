@@ -99,9 +99,25 @@ ul li {
 }
 /* Certificate corner box */
 .certificate-box {
-  position: absolute;
-  top: 30px;
-  right: 30px;
+  margin-top: 12px;
+  background: rgba(0, 242, 255, 0.12);
+  border: 1px solid #00f2ff;
+  padding: 12px 15px;
+  border-radius: 10px;
+  font-size: 14px;
+  width: fit-content;
+}
+
+.certificate-box a {
+  color: #00f2ff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.certificate-box a:hover {
+  text-decoration: underline;
+}
+
   background: rgba(0, 242, 255, 0.15);
   border: 1px solid #00f2ff;
   padding: 12px 15px;
