@@ -1,140 +1,107 @@
 /* Reset */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Body */
+/* Body Styling */
 body {
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  color: #ffffff;
-  min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    color: white;
+    line-height: 1.6;
 }
 
-/* Container */
+/* Main Container */
 .container {
-  max-width: 850px;
-  margin: 40px auto;
-  background: rgba(0, 0, 0, 0.35);
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-}
-
-/* Profile Picture */
-.profile-pic {
-  display: block;
-  margin: 0 auto 15px;
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #00f2ff;
+    width: 70%;
+    margin: 40px auto;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.65);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
 }
 
 /* Headings */
 h1 {
-  text-align: center;
-  font-size: 2.5rem;
-  color: #00f2ff;
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: #00ffff;
 }
 
-h3 {
-  text-align: center;
-  color: #b3ecff;
-  margin-top: 5px;
+h2 {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    color: #00ffff;
+    border-bottom: 2px solid #00ffff;
+    padding-bottom: 5px;
 }
 
-.college {
-  text-align: center;
-  font-size: 14px;
-  color: #dddddd;
-  margin-bottom: 20px;
-}
-
-/* Divider */
-hr {
-  border: none;
-  height: 1px;
-  background: #00f2ff;
-  margin: 20px 0;
-}
-
-/* Sections */
-section {
-  margin-bottom: 20px;
-}
-
-section h2 {
-  color: #00f2ff;
-  margin-bottom: 8px;
+/* Paragraph */
+p {
+    margin-bottom: 10px;
 }
 
 /* Lists */
 ul {
-  margin-left: 20px;
+    margin-left: 20px;
+    margin-bottom: 15px;
 }
 
 ul li {
-  margin-bottom: 6px;
+    margin-bottom: 8px;
+}
+
+/* Links */
+a {
+    color: #00ffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Contact Section */
+.contact-info li {
+    list-style: none;
+    margin-bottom: 8px;
+}
+
+/* Certifications Section */
+.certifications {
+    margin-top: 15px;
+}
+
+.certifications a {
+    display: inline-block;
+    margin-top: 5px;
+}
+
+/* Profile Image (agar use kar raha hai) */
+.profile-img {
+    display: block;
+    margin: 20px auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #00ffff;
+    object-fit: cover;
 }
 
 /* Responsive */
-@media (max-width: 600px) {
-  .container {
-    margin: 20px;
-    padding: 20px;
-  }
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
 
-  h1 {
-    font-size: 2rem;
-  }
-
-  .profile-pic {
-    width: 130px;
-    height: 130px;
-  }
-}
-/* Certificate corner box */
-.certificate-box {
-  margin-top: 12px;
-  background: rgba(0, 242, 255, 0.12);
-  border: 1px solid #00f2ff;
-  padding: 12px 15px;
-  border-radius: 10px;
-  font-size: 14px;
-  width: fit-content;
-}
-
-.certificate-box a {
-  color: #00f2ff;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.certificate-box a:hover {
-  text-decoration: underline;
-}
-
-  background: rgba(0, 242, 255, 0.15);
-  border: 1px solid #00f2ff;
-  padding: 12px 15px;
-  border-radius: 10px;
-  font-size: 13px;
-  text-align: center;
-}
-
-.certificate-box a {
-  display: inline-block;
-  margin-top: 6px;
-  color: #00f2ff;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.certificate-box a:hover {
-  text-decoration: underline;
+    h1 {
+        font-size: 28px;
+    }
 }
 
