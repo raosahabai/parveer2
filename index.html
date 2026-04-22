@@ -2,92 +2,705 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Parveer | Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parveer | Cybersecurity Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #040a0f;
+      --surface: rgba(0, 255, 170, 0.04);
+      --glass: rgba(0, 255, 170, 0.07);
+      --border: rgba(0, 255, 170, 0.18);
+      --accent: #00ffaa;
+      --accent2: #00c8ff;
+      --accent3: #7b2fff;
+      --text: #cde8e0;
+      --muted: #5a7a70;
+      --danger: #ff4466;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── ANIMATED GRID BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,255,170,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,170,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ── SCAN LINE ── */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      animation: scan 6s linear infinite;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    @keyframes scan {
+      0%   { top: -2px; }
+      100% { top: 100%; }
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      margin-bottom: 56px;
+      flex-wrap: wrap;
+    }
+
+    .profile-pic-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 20px rgba(0,255,170,0.3), 0 0 60px rgba(0,255,170,0.1);
+      display: block;
+    }
+
+    /* Fallback avatar if image missing */
+    .avatar-fallback {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0a2a1a, #0a1a2a);
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 20px rgba(0,255,170,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 42px;
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .profile-pic-wrap::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,255,170,0.2);
+      animation: spin-border 8s linear infinite;
+    }
+
+    @keyframes spin-border {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .hero-text h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(28px, 6vw, 46px);
+      font-weight: 900;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 2px;
+      line-height: 1.1;
+    }
+
+    .hero-text h3 {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 14px;
+      color: var(--accent2);
+      margin-top: 8px;
+      letter-spacing: 1px;
+    }
+
+    .hero-text .college {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 14px;
+      padding: 5px 14px;
+      border: 1px solid rgba(0,255,170,0.3);
+      border-radius: 20px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      background: rgba(0,255,170,0.06);
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 40px 0;
+    }
+
+    /* ── SECTION CARDS ── */
+    section {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(4px);
+      position: relative;
+      overflow: hidden;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    section:nth-child(1) { animation-delay: 0.1s; }
+    section:nth-child(2) { animation-delay: 0.2s; }
+    section:nth-child(3) { animation-delay: 0.3s; }
+    section:nth-child(4) { animation-delay: 0.4s; }
+    section:nth-child(5) { animation-delay: 0.5s; }
+    section:nth-child(6) { animation-delay: 0.6s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--accent), var(--accent2));
+      border-radius: 3px 0 0 3px;
+    }
+
+    section h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    section p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text);
+    }
+
+    /* ── EDUCATION ── */
+    .edu-item {
+      display: flex;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(0,255,170,0.07);
+    }
+
+    .edu-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .edu-item:first-child { padding-top: 0; }
+
+    .edu-year {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      color: var(--accent2);
+      min-width: 80px;
+      padding-top: 3px;
+    }
+
+    .edu-detail strong {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e0f5ef;
+      display: block;
+    }
+
+    .edu-detail span {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 3px;
+      display: block;
+    }
+
+    /* ── SKILLS GRID ── */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-tag {
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      background: rgba(0,255,170,0.05);
+      transition: all 0.2s;
+    }
+
+    .skill-tag:hover {
+      background: rgba(0,255,170,0.12);
+      border-color: var(--accent);
+      box-shadow: 0 0 10px rgba(0,255,170,0.15);
+      transform: translateY(-1px);
+    }
+
+    /* ── PROJECTS ── */
+    .project-card {
+      background: rgba(0,200,255,0.04);
+      border: 1px solid rgba(0,200,255,0.15);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 16px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .project-card:last-child { margin-bottom: 0; }
+
+    .project-card:hover {
+      border-color: rgba(0,200,255,0.4);
+      box-shadow: 0 0 20px rgba(0,200,255,0.08);
+    }
+
+    .project-card h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent2);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .project-card p {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .tech-chip {
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      background: rgba(0,200,255,0.1);
+      color: var(--accent2);
+      border: 1px solid rgba(0,200,255,0.2);
+    }
+
+    /* ── CERTIFICATIONS ── */
+    .cert-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px;
+      border-radius: 10px;
+      background: rgba(123,47,255,0.06);
+      border: 1px solid rgba(123,47,255,0.2);
+      margin-bottom: 14px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .cert-card:last-child { margin-bottom: 0; }
+
+    .cert-card:hover {
+      border-color: rgba(123,47,255,0.5);
+      box-shadow: 0 0 20px rgba(123,47,255,0.08);
+    }
+
+    .cert-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(123,47,255,0.3), rgba(0,200,255,0.2));
+      border: 1px solid rgba(123,47,255,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .cert-info strong {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e0dcff;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .cert-info span {
+      font-size: 12px;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .cert-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      color: var(--accent3);
+      text-decoration: none;
+      padding: 4px 12px;
+      border: 1px solid rgba(123,47,255,0.4);
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+
+    .cert-link:hover {
+      background: rgba(123,47,255,0.15);
+      color: #c0a8ff;
+    }
+
+    /* ── ACHIEVEMENTS ── */
+    .achievement-list {
+      list-style: none;
+    }
+
+    .achievement-list li {
+      padding: 10px 0;
+      font-size: 13px;
+      color: var(--text);
+      border-bottom: 1px solid rgba(0,255,170,0.06);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .achievement-list li:last-child { border-bottom: none; }
+
+    .achievement-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 11px;
+    }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      background: rgba(0,255,170,0.04);
+      border: 1px solid rgba(0,255,170,0.1);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .contact-item:hover {
+      border-color: rgba(0,255,170,0.3);
+      background: rgba(0,255,170,0.08);
+    }
+
+    .contact-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .contact-info label {
+      display: block;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .contact-info span {
+      font-size: 12px;
+      color: var(--text);
+      word-break: break-all;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      margin-top: 48px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 600px) {
+      .hero { gap: 24px; }
+      section { padding: 20px 20px; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-
   <div class="container">
 
-    <!-- Profile Picture -->
-    <img src="profile.jpg" alt="Parveer Profile Photo" class="profile-pic">
+    <!-- ── HERO ── -->
+    <div class="hero">
+      <div class="profile-pic-wrap">
+        <img src="profile.jpg" alt="Parveer" class="profile-pic"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="avatar-fallback" style="display:none;">P</div>
+      </div>
+      <div class="hero-text">
+        <h1>Parveer</h1>
+        <h3>// B.TECH CYBERSECURITY STUDENT</h3>
+        <p class="college">Gautam Buddha University, Greater Noida</p>
+        <div class="status-badge">
+          <span class="status-dot"></span>
+          OPEN TO OPPORTUNITIES
+        </div>
+      </div>
+    </div>
 
-    <h1>Parveer</h1>
-    <h3>B.Tech Cybersecurity Student</h3>
-    <p class="college">Gautam Buddha University, Greater Noida</p>
-
-    <hr>
-
+    <!-- ── ABOUT ── -->
     <section>
       <h2>About Me</h2>
       <p>
-        I am a motivated B.Tech Cybersecurity student with a strong interest in
-        cybersecurity, programming, and emerging technologies. I enjoy learning
-        new skills and building practical projects.
+        Motivated B.Tech Cybersecurity student with a strong interest in ethical hacking,
+        penetration testing, and building practical security tools. I enjoy working on
+        real-world problems — from IoT-based environmental systems to web security projects.
+        Currently sharpening my skills in bug bounty hunting and network security.
       </p>
     </section>
 
+    <!-- ── EDUCATION ── -->
     <section>
       <h2>Education</h2>
-      <ul>
-        <li>
-          <b>12th (Senior Secondary)</b><br>
-          RNS Public School<br>
-          Year: 2024–25
-        </li>
-        <br>
-        <li>
-          <b>B.Tech – Cybersecurity</b><br>
-          Gautam Buddha University, Greater Noida<br>
-          Status: Pursuing
-        </li>
-      </ul>
+
+      <div class="edu-item">
+        <div class="edu-year">2024–25</div>
+        <div class="edu-detail">
+          <strong>12th — Senior Secondary</strong>
+          <span>RNS Public School</span>
+        </div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-year">Pursuing</div>
+        <div class="edu-detail">
+          <strong>B.Tech — Cybersecurity</strong>
+          <span>Gautam Buddha University, Greater Noida</span>
+        </div>
+      </div>
     </section>
 
+    <!-- ── SKILLS ── -->
     <section>
       <h2>Skills</h2>
-      <ul>
-        <li>Cybersecurity Fundamentals</li>
-        <li>Phishing Awareness & Online Safety</li>
-        <li>Java Programming (Basics)</li>
-        <li>HTML & Web Development (Basics)</li>
-        <li>Computer Networks (Basic)</li>
-      </ul>
+      <div class="skills-grid">
+        <span class="skill-tag">Cybersecurity Fundamentals</span>
+        <span class="skill-tag">Ethical Hacking (Learning)</span>
+        <span class="skill-tag">Phishing Awareness</span>
+        <span class="skill-tag">Web Development</span>
+        <span class="skill-tag">HTML / CSS / JS</span>
+        <span class="skill-tag">Java (Basics)</span>
+        <span class="skill-tag">Computer Networks</span>
+        <span class="skill-tag">Linux (Basics)</span>
+        <span class="skill-tag">IoT Systems</span>
+        <span class="skill-tag">Arduino / NodeMCU</span>
+        <span class="skill-tag">Bug Bounty (Learning)</span>
+      </div>
     </section>
 
+    <!-- ── PROJECTS ── -->
     <section>
-      <h2>Achievements & Activities</h2>
-      <ul>
+      <h2>Projects</h2>
+
+      <!-- Project 1: CyberVault -->
+      <div class="project-card">
+        <h3>⚡ CyberVault — Cybersecurity & AI Tools Site</h3>
+        <p>
+          A full multi-page web platform featuring a password strength analyzer, phishing URL
+          detector, AI tools finder (500+ tools, 28 categories), text encoder, free courses
+          directory (106 entries), and a live cybersecurity news page. Built with a dark
+          glassmorphism/matrix aesthetic and custom keyboard navigation.
+        </p>
+        <div class="tech-stack">
+          <span class="tech-chip">HTML</span>
+          <span class="tech-chip">CSS</span>
+          <span class="tech-chip">JavaScript</span>
+          <span class="tech-chip">Glassmorphism UI</span>
+        </div>
+      </div>
+
+      <!-- Project 2: Student Management System -->
+      <div class="project-card">
+        <h3>🎓 Advanced Student Management System</h3>
+        <p>
+          A fully functional student management system with features like student registration,
+          record management, grade tracking, and data management. Built with a clean interface
+          for easy management of student data and academic records.
+        </p>
+        <div class="tech-stack">
+          <span class="tech-chip">Java</span>
+          <span class="tech-chip">OOP Concepts</span>
+          <span class="tech-chip">File Handling</span>
+          <span class="tech-chip">Data Management</span>
+        </div>
+      </div>
+
+      <!-- Project 3: IoT Stubble Burning Detection -->
+      <div class="project-card">
+        <h3>🌿 IoT Stubble Burning Detection System</h3>
+        <p>
+          An IoT-based air quality monitoring system designed to detect stubble burning events
+          in agricultural fields. The system continuously reads air quality and temperature/humidity
+          data, displays real-time values on an OLED screen, and triggers a buzzer alert when
+          harmful gas levels exceed a threshold — enabling early warning and environmental action.
+        </p>
+        <div class="tech-stack">
+          <span class="tech-chip">NodeMCU (ESP8266)</span>
+          <span class="tech-chip">MQ135 Sensor</span>
+          <span class="tech-chip">DHT11 Sensor</span>
+          <span class="tech-chip">OLED Display</span>
+          <span class="tech-chip">Buzzer</span>
+          <span class="tech-chip">Arduino IDE</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CERTIFICATIONS ── -->
+    <section>
+      <h2>Certifications</h2>
+
+      <!-- Cert 1: Coincent.ai -->
+      <div class="cert-card">
+        <div class="cert-icon">🤖</div>
+        <div class="cert-info">
+          <strong>Coincent.ai — AI/ML Training Program</strong>
+          <span>Completion Certificate · 2025</span>
+          <a href="phishing-certicate1.pdf" target="_blank" class="cert-link">
+            📄 View Certificate
+          </a>
+        </div>
+      </div>
+
+      <!-- Cert 2: Phishing Awareness -->
+      <div class="cert-card">
+        <div class="cert-icon">🛡️</div>
+        <div class="cert-info">
+          <strong>Phishing Awareness Program</strong>
+          <span>Participation Certificate</span>
+          <a href="phishing-certificate.pdf" target="_blank" class="cert-link">
+            📄 View Certificate
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ACHIEVEMENTS ── -->
+    <section>
+      <h2>Achievements &amp; Activities</h2>
+      <ul class="achievement-list">
+        <li>Completed Coincent.ai AI/ML Training Program</li>
+        <li>Built IoT-based Stubble Burning Detection System using NodeMCU</li>
+        <li>Developed CyberVault — a full cybersecurity & AI tools web platform</li>
         <li>Completed academic projects in Cybersecurity</li>
-        <li>Participated in technical & co-curricular activities</li>
-        <li>Basic experience with IoT projects</li>
+        <li>Participated in technical &amp; co-curricular activities</li>
+        <li>Phishing Awareness Program — Participation Certificate</li>
       </ul>
     </section>
 
+    <!-- ── CONTACT ── -->
     <section>
       <h2>Contact</h2>
-      <ul>
-        <li>Email: parveerkharshan176@gmail.com</li>
-        <li>Phone: 9138420111</li>
-        <li>GitHub: https://github.com/parveer</li>
-      </ul>
+      <div class="contact-grid">
+        <a href="mailto:ydvparveer@gmail.com" class="contact-item">
+          <span class="contact-icon">✉️</span>
+          <div class="contact-info">
+            <label>Email</label>
+            <span>ydvparveer@gmail.com</span>
+          </div>
+        </a>
+        <a href="tel:9138420111" class="contact-item">
+          <span class="contact-icon">📞</span>
+          <div class="contact-info">
+            <label>Phone</label>
+            <span>+91 9138420111</span>
+          </div>
+        </a>
+        <a href="https://github.com/parveer" target="_blank" class="contact-item">
+          <span class="contact-icon">💻</span>
+          <div class="contact-info">
+            <label>GitHub</label>
+            <span>github.com/parveer</span>
+          </div>
+        </a>
+      </div>
     </section>
 
-  </div>
+    <div class="footer">
+      © 2025 PARVEER &nbsp;·&nbsp; CYBERSECURITY STUDENT &nbsp;·&nbsp; GBU GREATER NOIDA
+    </div>
 
+  </div>
 </body>
 </html>
-<section>
-  <h2>Certifications</h2>
-  <ul>
-    <li>
-      <b>Phishing Awareness Program</b><br>
-      Participation Certificate<br>
-      <a href="phishing-certificate.pdf" target="_blank">
-        View Certificate
-      </a>
-    </li>
-  </ul>
-</section>
-
-
